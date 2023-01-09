@@ -59,7 +59,7 @@ class AlgoritmoGenetico:
     def mutacion(self, individual):
 
         p = random.random()
-        if p < self.probabilidadMutIndiv:
+        if p <= self.probabilidadMutIndiv:
             for _ in range(self.nBx):
                 index = random.randrange(self.nBx)
                 individual[0][index] = individual[0][index] if random.random() > self.probabilidadMutGen else \
