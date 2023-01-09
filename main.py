@@ -11,7 +11,7 @@ from random import choices, choice
 import math
 from matplotlib import pyplot as plt
 import numpy as np
-from sympy import lambdify, simplify, var, sin, cos, symbols
+from sympy import lambdify, simplify, cos, symbols
 from statistics import mean
 
 class AlgoritmoGenetico:
@@ -27,7 +27,8 @@ class AlgoritmoGenetico:
                  ):
         # --------------
         x = symbols('x')
-        expresion = (0.75 * sin(0.50 * x) * sin(0.25 * x) * -0.75 * sin(0.75 * x))
+        expresion = ((x * 2.718 ** (x/2)) * cos(x))
+        # expresion = (0.75 * sin(0.50 * x) * sin(0.25 * x) * -0.75 * sin(0.75 * x))
         expresion2 = simplify(expresion)
         self.function = lambdify((x), expresion2)
         # -----------------
