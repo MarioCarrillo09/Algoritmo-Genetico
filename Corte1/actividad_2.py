@@ -86,7 +86,11 @@ class AlgoritmoGenetico:
         return [genotipo, i,fenotipo, aptitud]
 
     def poda(self):
-        self.poblacion = self.poblacion[:self.limitePoblacion]
+        while len(self.poblacion) > self.limitePoblacion:
+            num=len(self.poblacion)-1
+            posicion = np.random.randint(0,num)
+            self.poblacion.pop(posicion)
+        #self.poblacion = self.poblacion[:self.limitePoblacion]
 
     def cruza_dos_puntos(self, a, b):
         punto_corte_1 = random.randint(0, self.nBx-1)
