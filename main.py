@@ -5,7 +5,8 @@ import numpy as np
 from numpy import ma
 import matplotlib.pyplot as plt
 from tkinter import messagebox
-
+import cv2
+import matplotlib.animation as animation
 import random
 from random import choices, choice
 import math
@@ -27,7 +28,7 @@ class AlgoritmoGenetico:
                  ):
         # --------------
         x = symbols('x')
-        expresion = ((x * 2.718 ** (x/2)) * cos(x))
+        expresion = ((x * math.e ** (x/2)) * cos(x))
         # expresion = (0.75 * sin(0.50 * x) * sin(0.25 * x) * -0.75 * sin(0.75 * x))
         expresion2 = simplify(expresion)
         self.function = lambdify((x), expresion2)
@@ -139,6 +140,24 @@ class AlgoritmoGenetico:
             if len(self.poblacion) > self.limitePoblacion:
                 self.poda()
             generation += 1
+
+            x = []
+            y = []
+            for individual in self.poblacion:  
+                x.append(individual[2])
+                y.append(individual[3])
+                
+            colors = np.random.uniform(15, 80, len(x))
+            # plot
+            fig, ax = plt.subplots()
+            ax.scatter(x, y, c=colors, vmin=0, vmax=100)
+
+            plt.title(f"Generación {generation}")
+            plt.xlabel("x")
+            plt.ylabel("y")
+            plt.savefig(f"images/generation {generation}.png")
+
+
             
 root = tk.Tk()
 w, h = 650, 400
